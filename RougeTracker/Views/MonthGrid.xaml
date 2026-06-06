@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:infra="clr-namespace:Infrastructure.Services;assembly=INFR"
+             x:Class="RougeTracker.Views.MonthGrid"
+             Title="MonthGrid">
+
+    <Grid Padding="12"
+          RowDefinitions="Auto,Auto"
+          RowSpacing="16">
+
+        <!-- YEARS -->
+        <CollectionView 
+            HorizontalOptions="Center"
+            Grid.Row="0"
+            ItemsSource="{Binding Years}"
+            SelectedItem="{Binding SelectedYear}"
+            SelectionMode="Single">
+
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Horizontal"
+                                   ItemSpacing="6"/>
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="x:Int32">
+                    <Border Style="{StaticResource Chip}">
+                        <Label Text="{Binding .}" />
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+
+        <!-- MONTHS -->
+        <CollectionView 
+            ItemsSource="{Binding Months}"
+            SelectedItem="{Binding SelectedMonth}"
+            SelectionChangedCommand="{Binding OpenMonthCommand}"
+            SelectionChangedCommandParameter="{Binding SelectedItem, Source={RelativeSource Self}}"
+            MaximumWidthRequest="600"
+            MinimumWidthRequest="100"
+            Grid.Row="1"
+            SelectionMode="Single"
+            HorizontalOptions="Fill">
+
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout
+                    Orientation="Vertical"
+                    Span="4"
+                    HorizontalItemSpacing="6"
+                    VerticalItemSpacing="6"/>
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="infra:MonthInfo">
+
+                    <Border Style="{StaticResource Chip}"
+                            Padding="10,6">
+
+                        <VerticalStackLayout Spacing="2"
+                                             HorizontalOptions="Center">
+
+                            <Label Text="{Binding MonthName}"
+                                   FontAttributes="Bold"
+                                   HorizontalOptions="Center"/>
+
+                            <Label Text="{Binding Income, StringFormat='+{0}'}"
+                                   TextColor="Green"
+                                   FontSize="12"
+                                   HorizontalOptions="Center"/>
+
+                            <Label Text="{Binding Loss, StringFormat='-{0}'}"
+                                   TextColor="Red"
+                                   FontSize="12"
+                                   HorizontalOptions="Center"/>
+
+                        </VerticalStackLayout>
+
+                    </Border>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+    </Grid>
+
+</ContentPage>

@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="INFR/INFR.csproj" Id="ac3d9740-25c4-4c9b-8120-1c82ea0b0b3d" />
+  <Project Path="RougeTracker/RougeTracker.csproj" />
+</Solution>
