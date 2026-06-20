@@ -1,33 +1,39 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:infra="clr-namespace:Infrastructure.Services;assembly=INFR"
+             xmlns:models="clr-namespace:RougeTracker.Models"
              x:Class="RougeTracker.Views.MonthDaysGrid">
 
     <Grid RowDefinitions="*,Auto">
 
 
         <CollectionView
+            x:Name="DaysCollection"
             Grid.Row="0"
-        MaximumWidthRequest="600"
-        MinimumWidthRequest="100"
-        
-        ItemsSource="{Binding Days}"
-        SelectionMode="None">
+            VerticalOptions="Fill"
+            MinimumWidthRequest="500"
+            ItemsSource="{Binding Days}"
+            SelectionMode="None">
 
             <CollectionView.ItemsLayout>
                 <GridItemsLayout 
-                VerticalItemSpacing="5"
-                HorizontalItemSpacing="5"
-                Orientation="Vertical"
-                Span="5" />
+                    x:Name="DaysLayout"
+                    VerticalItemSpacing="5"
+                    HorizontalItemSpacing="5"
+                    Orientation="Vertical"
+                    Span="5" />
             </CollectionView.ItemsLayout>
 
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="infra:MonthInfo">
+                <DataTemplate x:DataType="models:DayInfoObservable">
 
-                    <Border HeightRequest="60"
+                    <Border 
                         Style="{StaticResource Chip}" 
-                        Padding="10,6">
+                        Padding="10,6"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Fill"
+                        HeightRequest="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.CellHeight}"
+                        WidthRequest="-1"
+                        >
 
                         <VerticalStackLayout>
 
@@ -35,9 +41,12 @@
                                FontAttributes="Bold"
                                HorizontalOptions="Center"/>
 
-                            <Entry Text="{Binding Gross}"
-                               HorizontalTextAlignment="Center"
-                               IsReadOnly="False"
+                            <Entry 
+                                Text="{Binding Gross, Mode=TwoWay, StringFormat='{0}'}"
+                               TextColor="{Binding Gross, Converter={StaticResource IntToIncomeColorConverter}}"
+                                HorizontalTextAlignment="Center"
+                               
+                                IsReadOnly="False"
                                />
                         </VerticalStackLayout>
 
@@ -49,6 +58,9 @@
         </CollectionView>
 
         <Button Grid.Row="1"
+                Background="Red"
+                BackgroundColor="Red"
+                Command="{Binding SaveCommand}"
                 Text="Save"
                 Margin="10"/>
     </Grid>

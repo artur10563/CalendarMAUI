@@ -17,7 +17,10 @@ namespace Infrastructure.Services
 
     public class DayInfo()
     {
+        public int? Id { get; init; }
         public int Day { get; set; }
+        public int Month { get; set; }
+        public int Year { get; set; }
         public int Gross { get; set; }
     }
 
@@ -69,12 +72,57 @@ namespace Infrastructure.Services
 
                 return new DayInfo
                 {
+                    Id = day?.Id,
                     Day = d,
+                    Month = month,
+                    Year = year,
                     Gross = day?.Gross ?? 0,
                 };
             }).ToList();
 
             return allDays;
         }
+
+        public async Task<int> UpdateDaysAsync(List<DayInfo> days)
+        {
+            if (days == null || days.Count == 0)
+                return 0;
+
+            var year = days[0].Year;
+            var month = days[0].Month;
+
+            var startDate = new DateTime(year, month, 1);
+            var endDate = startDate.AddMonths(1);
+
+            var existing = await _db.DailyRecords
+                .Where(x => x.Date >= startDate && x.Date < endDate)
+                .ToListAsync();
+
+            var existingMap = existing
+                .ToDictionary(x => x.Date.Day);
+
+            foreach (var dto in days)
+            {
+                var date = new DateTime(dto.Year, dto.Month, dto.Day);
+
+                if (existingMap.TryGetValue(dto.Day, out var entity))
+                {
+                    entity.Gross = dto.Gross;
+                    _db.DailyRecords.Update(entity);
+                }
+                else
+                {
+                    _db.DailyRecords.Add(new DailyRecord
+                    {
+                        Date = date,
+                        Gross = dto.Gross
+                    });
+                }
+            }
+
+            return await _db.SaveChangesAsync();
+        }
     }
+
+
 }

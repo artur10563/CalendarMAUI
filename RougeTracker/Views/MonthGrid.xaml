@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:infra="clr-namespace:Infrastructure.Services;assembly=INFR"
+             xmlns:models="clr-namespace:RougeTracker.Models"
              x:Class="RougeTracker.Views.MonthGrid"
-             Title="MonthGrid">
+             Title="">
 
     <Grid Padding="12"
           RowDefinitions="Auto,Auto"
@@ -35,14 +35,15 @@
 
         <!-- MONTHS -->
         <CollectionView 
+            x:Name="MonthCollection"
             ItemsSource="{Binding Months}"
             SelectedItem="{Binding SelectedMonth}"
             SelectionChangedCommand="{Binding OpenMonthCommand}"
             SelectionChangedCommandParameter="{Binding SelectedItem, Source={RelativeSource Self}}"
-            MaximumWidthRequest="600"
             MinimumWidthRequest="100"
             Grid.Row="1"
             SelectionMode="Single"
+            VerticalOptions="Fill"
             HorizontalOptions="Fill">
 
             <CollectionView.ItemsLayout>
@@ -54,29 +55,40 @@
             </CollectionView.ItemsLayout>
 
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="infra:MonthInfo">
-
+                <DataTemplate x:DataType="models:MonthInfoObservable">
                     <Border Style="{StaticResource Chip}"
+                            HorizontalOptions="Fill"
+                            VerticalOptions="Fill"
+                            WidthRequest="-1"
+                            HeightRequest="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.CellHeight}"
                             Padding="10,6">
+                        <Grid RowDefinitions="Auto,*,*">
 
-                        <VerticalStackLayout Spacing="2"
-                                             HorizontalOptions="Center">
-
+                            <!-- TOP -->
                             <Label Text="{Binding MonthName}"
+                                   FontSize="16"
                                    FontAttributes="Bold"
-                                   HorizontalOptions="Center"/>
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Start"/>
 
-                            <Label Text="{Binding Income, StringFormat='+{0}'}"
-                                   TextColor="Green"
-                                   FontSize="12"
-                                   HorizontalOptions="Center"/>
+                            <!-- CENTER BLOCK -->
+                            <VerticalStackLayout Grid.Row="1"
+                                                 Grid.RowSpan="2"
+                                                 Spacing="2"
+                                                 HorizontalOptions="Center"
+                                                 VerticalOptions="Center">
+                                <Label Text="{Binding Income, StringFormat='+{0}'}"
+                                       TextColor="Green"
+                                       FontSize="16"
+                                       HorizontalOptions="Center"/>
 
-                            <Label Text="{Binding Loss, StringFormat='-{0}'}"
-                                   TextColor="Red"
-                                   FontSize="12"
-                                   HorizontalOptions="Center"/>
+                                <Label Text="{Binding Loss, StringFormat='{0}'}"
+                                       TextColor="Red"
+                                       FontSize="16"
+                                       HorizontalOptions="Center"/>
+                            </VerticalStackLayout>
 
-                        </VerticalStackLayout>
+                        </Grid>
 
                     </Border>
 
