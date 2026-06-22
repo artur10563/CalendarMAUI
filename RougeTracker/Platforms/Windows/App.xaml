@@ -5,4 +5,19 @@
     xmlns:maui="using:Microsoft.Maui"
     xmlns:local="using:RougeTracker.WinUI">
 
+
+    <!-- Override default WinUI entry border and underline. Replace with Gray border -->
+    <maui:MauiWinUIApplication.Resources>
+
+        <Thickness x:Key="TextControlBorderThemeThickness">1</Thickness>
+        <Thickness x:Key="TextControlBorderThemeThicknessFocused">1</Thickness>
+
+        <SolidColorBrush x:Key="TextControlBorderBrush"
+                     Color="Gray" />
+
+        <SolidColorBrush x:Key="TextControlBorderBrushFocused"
+                     Color="Gray" />
+
+    </maui:MauiWinUIApplication.Resources>
+
 </maui:MauiWinUIApplication>

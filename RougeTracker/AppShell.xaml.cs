@@ -8,6 +8,8 @@ namespace RougeTracker
         {
             InitializeComponent();
 
+            Application.Current?.UserAppTheme = AppTheme.Dark;
+
             Routing.RegisterRoute(nameof(MonthGrid), typeof(MonthGrid));
             Routing.RegisterRoute(nameof(MonthDaysGrid), typeof(MonthDaysGrid));
         }
