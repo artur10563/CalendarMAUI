@@ -77,15 +77,11 @@
                                                  Spacing="2"
                                                  HorizontalOptions="Center"
                                                  VerticalOptions="Center">
-                                <Label Text="{Binding Income, StringFormat='+{0}'}"
-                                       TextColor="Green"
+                                <Label Text="{Binding Gross, Converter={StaticResource SignedNumberConverter}}"
+                                       TextColor="{Binding  Gross, Converter={StaticResource NumberToIncomeColorConverter}}"
                                        FontSize="16"
                                        HorizontalOptions="Center"/>
-
-                                <Label Text="{Binding Loss, StringFormat='{0}'}"
-                                       TextColor="Red"
-                                       FontSize="16"
-                                       HorizontalOptions="Center"/>
+                             
                             </VerticalStackLayout>
 
                         </Grid>

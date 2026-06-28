@@ -18,7 +18,7 @@ namespace RougeTracker.Models
         [NotifyPropertyChangedFor(nameof(Gross))]
         public partial decimal Loss { get; set; }
 
-        public decimal Gross => Income - Loss;
+        public decimal Gross => Income + Loss; // + cuz Loss is negative number
 
         public static MonthInfoObservable FromMonthInfo(MonthInfo model)
         {

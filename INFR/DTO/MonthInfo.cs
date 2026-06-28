@@ -9,6 +9,6 @@ namespace INFR.DTO
         public string ShortMonthName => CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(MonthId);
         public decimal Income { get; set; }
         public decimal Loss { get; set; }
-        public decimal Gross => Income - Loss;
+        public decimal Gross => Income + Loss;
     }
 }
