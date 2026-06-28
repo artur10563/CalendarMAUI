@@ -6,13 +6,14 @@ namespace RougeTracker.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            var resources = Application.Current!.Resources;
             if (value is decimal v)
             {
-                if (v > 0) return Colors.Green;
-                if (v < 0) return Colors.Red;
+                if (v > 0) return (Color)resources["TextSuccess"];
+                if (v < 0) return (Color)resources["TextDanger"];
             }
 
-            return Colors.Gray;
+            return (Color)resources["TextInfo"];
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

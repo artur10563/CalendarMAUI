@@ -42,11 +42,18 @@
     <SolidColorBrush x:Key="Gray950Brush" Color="{StaticResource Gray950}"/>
     
     
-    <!-- Custom -->
-    <Color x:Key="OffBlack">#121212</Color><!-- Background black -->
-    <Color x:Key="SurfaceDark">#1E1E1E</Color>
-    <Color x:Key="OnSurfaceDark">#E1E1E1</Color>
-    <Color x:Key="PrimaryDark">#BB86FC</Color>
+    <!-- Card -->
+    <Color x:Key="OffBlack">#061826</Color><!-- Background black -->
+    <Color x:Key="SurfaceDark">#0A2239</Color> <!--Card-->
+    <Color x:Key="OnSurfaceDark">#148F8F</Color> <!-- Text on card and its border -->
+    
+    <!-- Buttons, its border and text color -->
+    <Color x:Key="PrimaryDark">#00E5D4</Color> <!-- Active button and year chip at top-->
     <Color x:Key="OnPrimaryDark">#000000</Color>
     <Color x:Key="PrimaryBorderDark">#D0A8FF</Color>
+    
+    <!-- Card income/loss text colors -->
+    <Color x:Key="TextInfo">#B8D8E8</Color>
+    <Color x:Key="TextSuccess">#00E5D4</Color>
+    <Color x:Key="TextDanger">#6B2D5C</Color>
 </ResourceDictionary>
