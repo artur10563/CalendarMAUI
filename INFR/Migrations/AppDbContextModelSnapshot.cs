@@ -26,8 +26,8 @@ namespace INFR.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Gross")
-                        .HasColumnType("INTEGER");
+                    b.Property<decimal?>("Gross")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 

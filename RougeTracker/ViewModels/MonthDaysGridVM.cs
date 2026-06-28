@@ -65,8 +65,8 @@ namespace RougeTracker.ViewModels
 
                 if (recordsUpdated > 0)
                 {
-                    var loss = Days.Sum(x => x.Gross < 0 ? x.Gross : 0);
-                    var income = Days.Sum(x => x.Gross > 0 ? x.Gross : 0);
+                    var loss = Days.Sum(x => (x.Gross < 0 ? x.Gross : 0) ?? 0);
+                    var income = Days.Sum(x => (x.Gross > 0 ? x.Gross : 0) ?? 0);
 
                     WeakReferenceMessenger.Default.Send(new MonthGrossChangedMessage()
                     {

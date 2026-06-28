@@ -1,5 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using Infrastructure.Services;
+using INFR.DTO;
 using System.Globalization;
 
 namespace RougeTracker.Models
@@ -12,13 +12,13 @@ namespace RougeTracker.Models
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(Gross))]
-        public partial int Income { get; set; }
+        public partial decimal Income { get; set; }
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(Gross))]
-        public partial int Loss { get; set; }
+        public partial decimal Loss { get; set; }
 
-        public int Gross => Income - Loss;
+        public decimal Gross => Income - Loss;
 
         public static MonthInfoObservable FromMonthInfo(MonthInfo model)
         {

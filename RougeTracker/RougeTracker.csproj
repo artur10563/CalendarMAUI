@@ -46,6 +46,8 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<LangVersion>preview</LangVersion>
+
+		<NoWarn>MCTEXP001</NoWarn>
 	</PropertyGroup>
 
 	<ItemGroup>

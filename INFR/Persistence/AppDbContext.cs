@@ -1,8 +1,5 @@
-﻿using INFR.Migrations;
-using Microsoft.CodeAnalysis;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Infrastructure.Persistence
 {
@@ -37,6 +34,6 @@ namespace Infrastructure.Persistence
 
         public DateTime Date { get; set; }
 
-        public int Gross { get; set; }
+        public decimal? Gross { get; set; }
     }
 }

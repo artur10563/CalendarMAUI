@@ -4,7 +4,7 @@
     {
         public int Year { get; set; }
         public int Month { get; set; }
-        public int Loss { get; set; }
-        public int Income { get; set; }
+        public decimal Loss { get; set; }
+        public decimal Income { get; set; }
     }
 }

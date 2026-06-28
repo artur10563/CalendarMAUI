@@ -1,6 +1,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:RougeTracker.Models"
+             xmlns:controls="clr-namespace:RougeTracker.Controls"
              x:Class="RougeTracker.Views.MonthDaysGrid">
 
     <Grid RowDefinitions="*,Auto">
@@ -41,13 +42,11 @@
                                FontAttributes="Bold"
                                HorizontalOptions="Center"/>
 
-                            <Entry 
-                               Text="{Binding Gross, Mode=TwoWay, StringFormat='{0}'}"
-                               TextColor="{Binding Gross, Converter={StaticResource IntToIncomeColorConverter}}"
-                               HorizontalTextAlignment="Center"
-                               
-                                IsReadOnly="False"
-                               />
+                            <controls:NumericEntry
+                                Value="{Binding Gross, Mode=TwoWay}"
+                                Placeholder="0"
+                                TextColor="{Binding Gross, Converter={StaticResource NumberToIncomeColorConverter}}"
+                                HorizontalTextAlignment="Center" />
                         </VerticalStackLayout>
 
                     </Border>

@@ -1,5 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using Infrastructure.Services;
+using INFR.DTO;
 
 namespace RougeTracker.Models
 {
@@ -13,7 +13,7 @@ namespace RougeTracker.Models
         public int Year { get; set; }
 
         [ObservableProperty]
-        public partial int Gross { get; set; }
+        public partial decimal? Gross { get; set; }
 
         [ObservableProperty]
         public partial bool IsDirty { get; set; }
@@ -28,7 +28,7 @@ namespace RougeTracker.Models
                 Day = model.Day,
                 Month = model.Month,
                 Year = model.Year,
-                Gross = model.Gross
+                Gross = model.Gross == 0 ? null : model.Gross
             };
 
             item._isInitializing = false;
@@ -47,7 +47,7 @@ namespace RougeTracker.Models
             };
         }
 
-        partial void OnGrossChanged(int oldValue, int newValue)
+        partial void OnGrossChanged(decimal? oldValue, decimal? newValue)
         {
             if (_isInitializing)
                 return;

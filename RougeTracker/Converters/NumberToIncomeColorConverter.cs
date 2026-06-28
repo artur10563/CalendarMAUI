@@ -2,11 +2,11 @@
 
 namespace RougeTracker.Converters
 {
-    public class IntToIncomeColorConverter : IValueConverter
+    public class NumberToIncomeColorConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is int v)
+            if (value is decimal v)
             {
                 if (v > 0) return Colors.Green;
                 if (v < 0) return Colors.Red;

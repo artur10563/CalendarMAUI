@@ -11,7 +11,8 @@
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
 
                 <ResourceDictionary>
-                    <converters:IntToIncomeColorConverter x:Key="IntToIncomeColorConverter" />
+                    <converters:NumberToIncomeColorConverter x:Key="NumberToIncomeColorConverter" />
+                    <converters:SignedNumberConverter x:Key="SignedNumberConverter" />
                 </ResourceDictionary>
 
             </ResourceDictionary.MergedDictionaries>
